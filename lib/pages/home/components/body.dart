@@ -11,17 +11,19 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildHeader(),
-          SizedBox(height: 20),
-          _buildTitle(title: "Preventaion"),
-          SizedBox(height: 20),
-          _buildPreventations(),
-          SizedBox(height: 20),
-          DoYourOwnTest(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildHeader(),
+            SizedBox(height: 20),
+            _buildTitle(title: "Preventaion"),
+            SizedBox(height: 20),
+            _buildPreventations(),
+            SizedBox(height: 20),
+            DoYourOwnTest(),
+          ],
+        ),
       ),
     );
   }
