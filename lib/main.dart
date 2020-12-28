@@ -1,4 +1,4 @@
-import 'package:covid_19_app/pages/home/home_screen.dart';
+import 'package:covid_19_app/pages/bottom_nav/bottom_nav_screen.dart';
 import 'package:covid_19_app/routes.dart';
 import 'package:covid_19_app/theme.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'COVID-19',
       theme: theme(),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: BottomNavScreen.routeName,
       routes: routes,
     );
   }
