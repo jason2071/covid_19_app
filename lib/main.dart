@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'COVID-19',
       theme: theme(),
+      debugShowCheckedModeBanner: false,
       initialRoute: BottomNavScreen.routeName,
       routes: routes,
     );

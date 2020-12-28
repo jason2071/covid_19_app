@@ -17,6 +17,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List _screens = [
     HomeScreen(),
     StatisticsScreen(),
+    Scaffold(),
+    Scaffold(),
   ];
 
   @override
@@ -35,7 +37,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         elevation: 0.0,
         items: [
           "assets/icons/icon_round_home.svg",
-          "assets/icons/icon_gridicons_stats.svg"
+          "assets/icons/icon_gridicons_stats.svg",
+          "assets/icons/icon_newspaper.svg",
+          "assets/icons/icon_ant_design_info_circle_filled.svg"
         ]
             .asMap()
             .map((key, value) => MapEntry(
