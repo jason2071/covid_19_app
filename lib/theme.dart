@@ -14,6 +14,8 @@ ThemeData theme() {
     primaryColor: kPrimaryColor,
     accentColor: kPrimaryColor,
     canvasColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

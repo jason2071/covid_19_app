@@ -1,6 +1,6 @@
 import 'package:covid_19_app/constants.dart';
 import 'package:covid_19_app/pages/home/home_screen.dart';
-import 'package:covid_19_app/pages/statistics/statistics_screen.dart';
+import 'package:covid_19_app/pages/statistics/stats_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,7 +16,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   final List _screens = [
     HomeScreen(),
-    StatisticsScreen(),
+    StatsScreen(),
     Scaffold(),
     Scaffold(),
   ];
