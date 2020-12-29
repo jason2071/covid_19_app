@@ -17,4 +17,4 @@ final kShadow = BoxShadow(
   color: Colors.black12,
 );
 
-const kAnimationDuration = Duration(milliseconds: 300);
+const kAnimationDuration = Duration(milliseconds: 250);

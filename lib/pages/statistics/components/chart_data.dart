@@ -12,7 +12,7 @@ class ChartData extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 20),
       width: SizeConfig.screenWidth,
-      height: SizeConfig.screenHeight * 0.35,
+      height: SizeConfig.screenHeight * 0.36,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
