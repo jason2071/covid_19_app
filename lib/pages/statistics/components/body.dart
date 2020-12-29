@@ -24,6 +24,9 @@ class _BodyState extends State<Body> {
   APIResponse<TimelineModel> _apiResponseTimeline;
   bool _isLoading = false;
 
+  TodayModel todayModel;
+  TimelineModel timelineModel;
+
   List<String> _tabs = ['Total', 'Today', 'Yesterday'];
   int _currentIndex = 0;
 
@@ -37,9 +40,7 @@ class _BodyState extends State<Body> {
   }
 
   void _fetchData() async {
-    setState(() {
-      _isLoading = true;
-    });
+    _isLoading = true;
 
     _apiResponse = await service.getTodayData();
     todayModel = _apiResponse.data;
@@ -47,9 +48,9 @@ class _BodyState extends State<Body> {
     _apiResponseTimeline = await service.getTimelineData();
     timelineModel = _apiResponseTimeline.data;
 
-    setState(() {
-      _isLoading = false;
-    });
+    _isLoading = false;
+
+    setState(() {});
   }
 
   @override

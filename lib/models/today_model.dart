@@ -65,4 +65,4 @@ class TodayModel {
       };
 }
 
-TodayModel todayModel;
+// TodayModel todayModel;
