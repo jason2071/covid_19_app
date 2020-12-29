@@ -2,6 +2,7 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:covid_19_app/constants.dart';
 import 'package:covid_19_app/models/api_response.dart';
 import 'package:covid_19_app/models/display_stats_args.dart';
+import 'package:covid_19_app/models/timeline_model.dart';
 import 'package:covid_19_app/models/today_model.dart';
 import 'package:covid_19_app/services/stats_service.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   StatsService get service => GetIt.I<StatsService>();
   APIResponse<TodayModel> _apiResponse;
+  APIResponse<TimelineModel> _apiResponseTimeline;
   bool _isLoading = false;
 
   List<String> _tabs = ['Total', 'Today', 'Yesterday'];
@@ -41,6 +43,9 @@ class _BodyState extends State<Body> {
 
     _apiResponse = await service.getTodayData();
     todayModel = _apiResponse.data;
+
+    _apiResponseTimeline = await service.getTimelineData();
+    timelineModel = _apiResponseTimeline.data;
 
     setState(() {
       _isLoading = false;
@@ -101,12 +106,17 @@ class _BodyState extends State<Body> {
           deaths: _apiResponse.data.newDeaths,
         );
       } else {
-        displayStatsArgs = DisplayStatsArgs(
-          confirmed: 0,
-          recovered: 0,
-          hospitalized: 0,
-          deaths: 0,
-        );
+        if (timelineModel != null) {
+          TimelineData items =
+              timelineModel.data[timelineModel.data.length - 1];
+
+          displayStatsArgs = DisplayStatsArgs(
+            confirmed: items.confirmed,
+            recovered: items.recovered,
+            hospitalized: items.hospitalized,
+            deaths: items.deaths,
+          );
+        }
       }
     }
   }
