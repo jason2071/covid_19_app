@@ -9,11 +9,9 @@ class ChartData extends StatelessWidget {
   const ChartData({
     Key key,
     @required this.value,
-    this.color = kPrimaryColor,
   }) : super(key: key);
 
   final List<double> value;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +87,9 @@ class ChartData extends StatelessWidget {
               barRods: [
                 BarChartRodData(
                   y: value,
-                  colors:
-                      i == barChartDatas.length - 1 ? [kPrimaryColor] : [color],
+                  colors: i == barChartDatas.length - 1
+                      ? [Color(0xFF4CD97B)]
+                      : [Color(0xFFFF5959)],
                   width: 10,
                 )
               ],

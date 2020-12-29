@@ -115,7 +115,6 @@ class _BodyState extends State<Body> {
                     ),
                     ChartData(
                       value: confirmedLatest,
-                      color: Color(0xFFFF5959),
                     ),
                   ],
                 ),
