@@ -30,6 +30,8 @@ class _BodyState extends State<Body> {
   List<String> _tabs = ['Total', 'Today', 'Yesterday'];
   int _currentIndex = 0;
 
+  List<double> confirmedLatest = [];
+
   @override
   void initState() {
     if (todayModel == null) {
@@ -50,6 +52,7 @@ class _BodyState extends State<Body> {
 
     _isLoading = false;
 
+    _renderChartData();
     setState(() {});
   }
 
@@ -82,12 +85,25 @@ class _BodyState extends State<Body> {
                       recovered: displayStatsArgs.recovered,
                       hospitalized: displayStatsArgs.hospitalized,
                     ),
-                    ChartData(),
+                    ChartData(
+                      value: confirmedLatest,
+                      color: Color(0xFFFF5959),
+                    ),
                   ],
                 ),
               ),
             ),
     );
+  }
+
+  void _renderChartData() {
+    List<TimelineData> items =
+        timelineModel.data.skip(timelineModel.data.length - 7).toList();
+
+    for (var item in items) {
+      double newData = item.confirmed.toDouble();
+      confirmedLatest.add(newData);
+    }
   }
 
   void _renderDisplay() {
@@ -108,9 +124,7 @@ class _BodyState extends State<Body> {
         );
       } else {
         if (timelineModel != null) {
-          TimelineData items =
-              timelineModel.data[timelineModel.data.length - 1];
-
+          TimelineData items = timelineModel.data.last;
           displayStatsArgs = DisplayStatsArgs(
             confirmed: items.confirmed,
             recovered: items.recovered,

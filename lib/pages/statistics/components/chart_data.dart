@@ -1,11 +1,18 @@
+import 'package:covid_19_app/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class ChartData extends StatelessWidget {
-  const ChartData({Key key}) : super(key: key);
+  const ChartData({
+    Key key,
+    @required this.value,
+    this.color = kPrimaryColor,
+  }) : super(key: key);
+
+  final List<double> value;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +35,7 @@ class ChartData extends StatelessWidget {
             barGroups: getBarGroups(),
             borderData: FlBorderData(show: false),
             titlesData: FlTitlesData(
-                leftTitles: SideTitles(
-                  margin: 20,
-                  showTitles: true,
-                  reservedSize: 0,
-                  getTextStyles: (value) => TextStyle(color: kSecondaryColor),
-                  getTitles: (value) {
-                    if (value == 0) {
-                      return '0';
-                    } else if (value % 3 == 0) {
-                      return '${value ~/ 3 * 3}';
-                    }
-                    return '';
-                  },
-                ),
+                leftTitles: SideTitles(showTitles: false),
                 bottomTitles: SideTitles(
                   showTitles: true,
                   getTitles: getWeek,
@@ -58,7 +52,7 @@ class ChartData extends StatelessWidget {
   }
 
   getBarGroups() {
-    List<double> barChartDatas = [6, 10, 8, 7, 10, 15, 9];
+    List<double> barChartDatas = value;
     List<BarChartGroupData> barChartGroups = [];
     barChartDatas.asMap().forEach(
           (i, value) => barChartGroups.add(
@@ -67,7 +61,7 @@ class ChartData extends StatelessWidget {
               barRods: [
                 BarChartRodData(
                   y: value,
-                  colors: [Color(0xFFFF5959)],
+                  colors: [color],
                   width: 10,
                 )
               ],
