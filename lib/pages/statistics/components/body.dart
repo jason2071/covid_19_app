@@ -37,10 +37,7 @@ class _BodyState extends State<Body> {
 
   @override
   void initState() {
-    if (todayModel == null) {
-      _fetchData();
-    }
-
+    _fetchData();
     super.initState();
   }
 
@@ -210,6 +207,7 @@ class _BodyState extends State<Body> {
           onTap: (index) {
             setState(() {
               _currentIndex = index;
+              confirmedLatest.clear();
             });
           },
         ),

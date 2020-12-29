@@ -46,7 +46,21 @@ class ChartData extends StatelessWidget {
                   barGroups: getBarGroups(),
                   borderData: FlBorderData(show: false),
                   titlesData: FlTitlesData(
-                      leftTitles: SideTitles(showTitles: false),
+                      leftTitles: SideTitles(
+                        showTitles: false,
+                        margin: 20,
+                        reservedSize: 0,
+                        getTextStyles: (value) =>
+                            TextStyle(color: kSecondaryColor),
+                        getTitles: (value) {
+                          if (value == 0) {
+                            return '0';
+                          } else if (value % 3 == 0) {
+                            return '${value ~/ 3 * 3}';
+                          }
+                          return '';
+                        },
+                      ),
                       bottomTitles: SideTitles(
                         showTitles: true,
                         getTitles: getWeek,
