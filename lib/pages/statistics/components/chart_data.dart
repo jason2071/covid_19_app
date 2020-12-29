@@ -89,7 +89,8 @@ class ChartData extends StatelessWidget {
               barRods: [
                 BarChartRodData(
                   y: value,
-                  colors: [color],
+                  colors:
+                      i == barChartDatas.length - 1 ? [kPrimaryColor] : [color],
                   width: 10,
                 )
               ],

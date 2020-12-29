@@ -57,8 +57,10 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    _renderDisplay();
-    _renderChartData();
+    if (todayModel != null && timelineModel != null) {
+      _renderDisplay();
+      _renderChartData();
+    }
 
     return AnimatedSwitcher(
       duration: kAnimationDuration,
