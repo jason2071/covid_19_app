@@ -209,6 +209,7 @@ class _BodyState extends State<Body> {
             setState(() {
               _currentIndex = index;
               confirmedLatest.clear();
+              _type = StatsTypes.confirmed;
             });
           },
         ),
