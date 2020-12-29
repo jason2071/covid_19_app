@@ -8,9 +8,12 @@ class TopRowCard extends StatelessWidget {
     Key key,
     @required this.confirmed,
     @required this.deaths,
+    this.confirmedPress,
+    this.deathsPress,
   }) : super(key: key);
 
   final int confirmed, deaths;
+  final Function confirmedPress, deathsPress;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +25,14 @@ class TopRowCard extends StatelessWidget {
             title: "Confirmed",
             number: formatDecimal(confirmed),
             color: Color(0xFFFFB259),
+            press: confirmedPress,
           ),
           SizedBox(width: 16),
           StatsCard(
             title: "Deaths",
             number: formatDecimal(deaths),
             color: Color(0xFFFF5959),
+            press: deathsPress,
           ),
         ],
       ),

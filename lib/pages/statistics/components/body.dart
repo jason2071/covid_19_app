@@ -13,6 +13,8 @@ import 'chart_data.dart';
 import 'stats_title.dart';
 import 'top_row_card.dart';
 
+enum StatsTypes { confirmed, recovered, hospitalized, deaths }
+
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
@@ -29,6 +31,7 @@ class _BodyState extends State<Body> {
 
   List<String> _tabs = ['Total', 'Today', 'Yesterday'];
   int _currentIndex = 0;
+  StatsTypes _type = StatsTypes.confirmed;
 
   List<double> confirmedLatest = [];
 
@@ -52,13 +55,13 @@ class _BodyState extends State<Body> {
 
     _isLoading = false;
 
-    _renderChartData();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     _renderDisplay();
+    _renderChartData();
 
     return AnimatedSwitcher(
       duration: kAnimationDuration,
@@ -75,15 +78,41 @@ class _BodyState extends State<Body> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 20),
                     StatsTitle(title: "Statistics"),
+                    SizedBox(height: 20),
                     _buildCountryTab(),
                     TopRowCard(
                       confirmed: displayStatsArgs.confirmed,
                       deaths: displayStatsArgs.deaths,
+                      confirmedPress: () {
+                        setState(() {
+                          _type = StatsTypes.confirmed;
+                          confirmedLatest.clear();
+                        });
+                      },
+                      deathsPress: () {
+                        setState(() {
+                          _type = StatsTypes.deaths;
+                          confirmedLatest.clear();
+                        });
+                      },
                     ),
                     BottomRowCard(
                       recovered: displayStatsArgs.recovered,
                       hospitalized: displayStatsArgs.hospitalized,
+                      recoveredPress: () {
+                        setState(() {
+                          _type = StatsTypes.recovered;
+                          confirmedLatest.clear();
+                        });
+                      },
+                      hospitalizedPress: () {
+                        setState(() {
+                          _type = StatsTypes.hospitalized;
+                          confirmedLatest.clear();
+                        });
+                      },
                     ),
                     ChartData(
                       value: confirmedLatest,
@@ -102,6 +131,21 @@ class _BodyState extends State<Body> {
 
     for (var item in items) {
       double newData = item.confirmed.toDouble();
+      switch (_type) {
+        case StatsTypes.deaths:
+          newData = item.deaths.toDouble();
+          break;
+        case StatsTypes.recovered:
+          newData = item.recovered.toDouble();
+          break;
+        case StatsTypes.hospitalized:
+          newData = item.hospitalized.toDouble();
+          break;
+        default:
+          newData = item.confirmed.toDouble();
+          break;
+      }
+
       confirmedLatest.add(newData);
     }
   }

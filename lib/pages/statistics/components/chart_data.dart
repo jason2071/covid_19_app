@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
+import 'stats_title.dart';
 
 class ChartData extends StatelessWidget {
   const ChartData({
@@ -27,26 +28,39 @@ class ChartData extends StatelessWidget {
           topRight: Radius.circular(40),
         ),
       ),
-      child: Container(
-        width: SizeConfig.screenWidth * 0.85,
-        padding: EdgeInsets.only(left: 40, right: 40, top: 40, bottom: 10),
-        child: BarChart(
-          BarChartData(
-            barGroups: getBarGroups(),
-            borderData: FlBorderData(show: false),
-            titlesData: FlTitlesData(
-                leftTitles: SideTitles(showTitles: false),
-                bottomTitles: SideTitles(
-                  showTitles: true,
-                  getTitles: getWeek,
-                  getTextStyles: (_) => TextStyle(
-                    color: Color(0xFF7589A2),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                  ),
-                )),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 20),
+          StatsTitle(
+            title: "Daily New Cases",
+            color: Colors.black,
           ),
-        ),
+          Spacer(),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: SizeConfig.screenHeight * 0.25,
+              child: BarChart(
+                BarChartData(
+                  barGroups: getBarGroups(),
+                  borderData: FlBorderData(show: false),
+                  titlesData: FlTitlesData(
+                      leftTitles: SideTitles(showTitles: false),
+                      bottomTitles: SideTitles(
+                        showTitles: true,
+                        getTitles: getWeek,
+                        getTextStyles: (_) => TextStyle(
+                          color: Color(0xFF7589A2),
+                          fontSize: 10,
+                          fontWeight: FontWeight.w200,
+                        ),
+                      )),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

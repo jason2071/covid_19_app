@@ -9,40 +9,45 @@ class StatsCard extends StatelessWidget {
     this.number,
     this.color,
     this.width,
+    this.press,
   }) : super(key: key);
 
   final String title, number;
   final Color color;
   final double width;
+  final Function press;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width != null ? width : SizeConfig.screenWidth * 0.5 - 28,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white,
+    return GestureDetector(
+      onTap: press,
+      child: Container(
+        width: width != null ? width : SizeConfig.screenWidth * 0.5 - 28,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
             ),
-          ),
-          SizedBox(height: 16),
-          Text(
-            number,
-            style: TextStyle(
-              fontSize: 26,
-              color: Colors.white,
+            SizedBox(height: 16),
+            Text(
+              number,
+              style: TextStyle(
+                fontSize: 26,
+                color: Colors.white,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

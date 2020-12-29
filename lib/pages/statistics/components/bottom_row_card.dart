@@ -8,9 +8,12 @@ class BottomRowCard extends StatelessWidget {
     Key key,
     @required this.recovered,
     @required this.hospitalized,
+    this.recoveredPress,
+    this.hospitalizedPress,
   }) : super(key: key);
 
   final int recovered, hospitalized;
+  final Function recoveredPress, hospitalizedPress;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +26,14 @@ class BottomRowCard extends StatelessWidget {
             title: "Recovered",
             number: formatDecimal(recovered),
             color: Color(0xFF4CD97B),
+            press: recoveredPress,
           ),
           SizedBox(width: 16),
           StatsCard(
             title: "Hospitalized",
             number: formatDecimal(hospitalized),
             color: Color(0xFF9059FF),
+            press: hospitalizedPress,
           ),
         ],
       ),
