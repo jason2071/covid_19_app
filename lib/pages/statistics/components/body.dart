@@ -1,5 +1,8 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:covid_19_app/size_config.dart';
 import 'package:flutter/material.dart';
+
+import 'stats_card.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -88,69 +91,65 @@ class _BodyState extends State<Body> {
           sliver: SliverToBoxAdapter(
             child: Row(
               children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFFB259),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    padding: EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Affected",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          "336,851",
-                          style: TextStyle(
-                            fontSize: 26,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                StatsCard(
+                  title: "Affected",
+                  number: "336,851",
+                  color: Color(0xFFFFB259),
                 ),
                 SizedBox(width: 16),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF5959),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    padding: EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Death",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          "9,620",
-                          style: TextStyle(
-                            fontSize: 26,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                StatsCard(
+                  title: "Death",
+                  number: "9,620",
+                  color: Color(0xFFFF5959),
                 ),
               ],
             ),
           ),
         ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          sliver: SliverToBoxAdapter(
+            child: Row(
+              children: [
+                StatsCard(
+                  title: "Recovered",
+                  number: "17,977",
+                  color: Color(0xFF4CD97B),
+                  width: SizeConfig.screenWidth * 0.315 - 17,
+                ),
+                SizedBox(width: 16),
+                StatsCard(
+                  title: "Active",
+                  number: "301,251",
+                  color: Color(0xFF4DB5FF),
+                  width: SizeConfig.screenWidth * 0.315 - 17,
+                ),
+                SizedBox(width: 16),
+                StatsCard(
+                  title: "8,702",
+                  number: "9,620",
+                  color: Color(0xFF9059FF),
+                  width: SizeConfig.screenWidth * 0.315 - 17,
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.only(top: 20),
+          sliver: SliverToBoxAdapter(
+            child: Container(
+              height: SizeConfig.screenHeight * 0.3,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
+              ),
+            ),
+          ),
+        )
       ],
     );
   }
